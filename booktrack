@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tracker</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #555;
+            border: none;
+            color: #fff;
+        }
+        input[type="submit"] {
+            background-color: #777;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #777;
+        }
+        th {
+            background-color: #444;
+        }
+        tr:nth-child(even) {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Book Tracker</h1>
+
+    <form id="bookForm">
+        <label for="title">Book Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+
+        <label for="location">Current Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <input type="submit" value="Add Book">
+    </form>
+
+    <table id="bookTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Entries will be added here -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('bookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            var title = document.getElementById('title').value;
+            var author = document.getElementById('author').value;
+            var location = document.getElementById('location').value;
+
+            // Create a new row and cells
+            var table = document.getElementById('bookTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+            var titleCell = newRow.insertCell(0);
+            var authorCell = newRow.insertCell(1);
+            var locationCell = newRow.insertCell(2);
+
+            // Append data to cells
+            titleCell.innerHTML = title;
+            authorCell.innerHTML = author;
+            locationCell.innerHTML = location;
+
+            // Clear form inputs
+            document.getElementById('bookForm').reset();
+        });
+    </script>
+
+</body>
+</html>
